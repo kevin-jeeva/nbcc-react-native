@@ -11,6 +11,7 @@ import colors from "../config/colors";
 import userApi from "../api/user";
 import { useContext } from "react";
 import AuthContext from "../AuthContext/context";
+import authStorage from "../AuthContext/authStorage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -30,6 +31,7 @@ function LoginScreen(props) {
     setLoginFailed(false);
     const user = result.data;
     authContext.setUser(user);
+    authStorage.storeUser(JSON.stringify(user)); //set the user to secure storage
   };
 
   return (

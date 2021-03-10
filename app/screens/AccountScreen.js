@@ -1,13 +1,23 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { useContext } from "react";
+import { View, StyleSheet, Text, Button } from "react-native";
+import authStorage from "../AuthContext/authStorage";
+import AuthContext from "../AuthContext/context";
 
 import Screen from "../components/screen";
 
-function AccountScreen(props) {
+function AccountScreen({ navigation }) {
+  const { user, setUser } = useContext(AuthContext);
+  const hadleLogout = () => {
+    authStorage.removeUser();
+    setUser(null);
+  };
+
   return (
     <Screen>
       <View style={styles.container}>
         <Text>Account Screen</Text>
+        <Button title="logout" onPress={hadleLogout} />
       </View>
     </Screen>
   );
