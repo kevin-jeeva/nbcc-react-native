@@ -1,0 +1,15 @@
+export default {
+  light: "#e6e6e6",
+  iconLight: "#808080",
+  underLay: "#e6e6e6",
+  blue: "#4db8ff",
+  black: "black",
+  darkBlue: "#0000ff",
+  white: "white",
+  error: "red",
+  primary: "#007599",
+  red: "#cc0000",
+  green: "#00802b",
+  lightBlue: "#A1D8E0",
+  yellow: " #e6a800",
+};
