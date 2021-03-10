@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, AsyncStorage } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -11,6 +11,7 @@ import colors from "../config/colors";
 import userApi from "../api/user";
 import { useContext } from "react";
 import AuthContext from "../AuthContext/context";
+import session from "../cache/userSession";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -30,6 +31,7 @@ function LoginScreen(props) {
     setLoginFailed(false);
     const user = result.data;
     authContext.setUser(user);
+    session.setEmail(email);
   };
 
   return (
@@ -87,6 +89,7 @@ function LoginScreen(props) {
     </Screen>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
