@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "../screens/LoginScreen";
 
 const Stack = createStackNavigator();
-
+//LOGIN SCREEN
 const AuthNavigator = () => {
   return (
     <Stack.Navigator>
