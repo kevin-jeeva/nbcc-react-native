@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().label("Password"),
 });
-
+//LOGIN screen LOGIC
 function LoginScreen(props) {
   const authContext = useContext(AuthContext);
   const [loginFailed, setLoginFailed] = useState(false);

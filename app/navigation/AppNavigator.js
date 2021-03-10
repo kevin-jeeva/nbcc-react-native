@@ -6,12 +6,13 @@ import AccountScreen from "../screens/AccountScreen";
 import Homepage from "../screens/Homepage";
 import ArticleNavigator from "./ArticleNavigator";
 
+// BOTTOM PAGE TAB
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen
+      <Tab.Screen //HOMEPAGE ICON 
         name="Homepage"
         component={ArticleNavigator}
         options={{
@@ -20,7 +21,7 @@ const AppNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
+      <Tab.Screen //Account ICON
         name="Account"
         component={AccountScreen}
         options={{
