@@ -5,11 +5,12 @@ import Holder from "../components/Holder";
 import Screen from "../components/screen";
 import colors from "../config/colors";
 
+//Homepage Navigation
 function Homepage({ navigation }) {
   return (
     <Screen>
       <View style={styles.container}>
-        <Holder
+        <Holder //Articles
           icon={"book"}
           iconColor={colors.blue}
           textColor={styles.articleText}
@@ -21,7 +22,7 @@ function Homepage({ navigation }) {
             })
           }
         />
-        <Holder
+        <Holder //Events
           icon={"calendar"}
           holderText={"Events"}
           iconColor={colors.green}
@@ -33,7 +34,7 @@ function Homepage({ navigation }) {
             })
           }
         />
-        <Holder
+        <Holder //SupportServices
           icon={"face-agent"}
           holderText={"Support Services"}
           iconColor={colors.darkBlue}
@@ -45,7 +46,7 @@ function Homepage({ navigation }) {
             })
           }
         />
-        <Holder
+        <Holder //Notification
           icon={"bell"}
           holderText={"Notifications"}
           iconColor={colors.red}

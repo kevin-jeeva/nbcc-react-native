@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, AsyncStorage } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -12,12 +12,13 @@ import userApi from "../api/user";
 import { useContext } from "react";
 import AuthContext from "../AuthContext/context";
 import authStorage from "../AuthContext/authStorage";
+import session from "../cache/userSession";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().label("Password"),
 });
-
+//LOGIN screen LOGIC
 function LoginScreen(props) {
   const authContext = useContext(AuthContext);
   const [loginFailed, setLoginFailed] = useState(false);
@@ -32,6 +33,7 @@ function LoginScreen(props) {
     const user = result.data;
     authContext.setUser(user);
     authStorage.storeUser(JSON.stringify(user)); //set the user to secure storage
+    session.setEmail(email);
   };
 
   return (
