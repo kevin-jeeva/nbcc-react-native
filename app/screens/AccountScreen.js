@@ -9,12 +9,13 @@ import Seperator from "../components/Seperator";
 import colors from "../config/colors";
 import userApi from "../api/user";
 import session from "../cache/userSession";
+import AppButton from "../components/AppButton";
 
 function AccountScreen(props) {
   const [staff, setStaff] = useState([]);
 
   const { setUser } = useContext(AuthContext);
-  const hadleLogout = () => {
+  const handleLogout = () => {
     authStorage.removeUser();
     setUser(null);
   };
@@ -43,7 +44,11 @@ function AccountScreen(props) {
         <Text style={styles.mainText}>Name: {staff.fname} </Text>
         <Text style={styles.mainText}>Email: {session.getEmail()}</Text>
         <Text style={styles.mainText}>Phone: </Text>
-        <Button title="logout" onPress={hadleLogout} />
+        <AppButton
+          text={"Logout"}
+          onPress={handleLogout}
+          style={styles.logoutBtn}
+        />
       </View>
     </Screen>
   );
@@ -64,6 +69,9 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     textAlign: "left",
+  },
+  logoutBtn: {
+    backgroundColor: colors.primary,
   },
 });
 
