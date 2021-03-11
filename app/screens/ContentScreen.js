@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, TouchableHighlight } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "../components/screen";
 import colors from "../config/colors";
@@ -29,13 +30,24 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
           navigation.navigate("ShowContent", { content_id: item.content_id })
         }
       >
-        <View>
-          <Text style={styles.heading}>{item.content_title}</Text>
-          <Text numberOfLines={2} style={styles.description}>
-            {item.content_description}
-          </Text>
+        <>
+          <View style={styles.cotentContainer}>
+            <View style={styles.arrow}>
+              <Text style={styles.heading}>{item.content_title}</Text>
+              <Text numberOfLines={2} style={styles.description}>
+                {item.content_description}
+              </Text>
+            </View>
+            <View style={styles.chevron}>
+              <MaterialCommunityIcons
+                name="chevron-right"
+                size={25}
+                color={"black"}
+              />
+            </View>
+          </View>
           <View style={styles.line}></View>
-        </View>
+        </>
       </TouchableHighlight>
     );
   };
@@ -52,6 +64,10 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
 }
 
 const styles = StyleSheet.create({
+  arrow: {
+    width: "100%%",
+  },
+  chevron: {},
   line: {
     width: "100%",
     backgroundColor: colors.iconLight,
@@ -63,7 +79,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 10,
   },
+  cotentContainer: {
+    flex: 1,
+    width: "90%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
   textContainer: {
+    flex: 1,
+    width: "100%",
+
     paddingHorizontal: 15,
   },
   description: {

@@ -15,7 +15,7 @@ function DisplayContent({ content_id = 76, route }) {
     const result = await content.getContent(id);
     if (!result.ok) return console.log("No such content");
     let textResult = result.data[0]["content_text"].replace(regex, "");
-    const regexWhitespace = /(&ldquo;|&nbsp;|&rsquo;|&mdash;|&lsquo;)/gi;
+    const regexWhitespace = /(&ldquo;|&nbsp;|&rsquo;|&mdash;|&lsquo;|&amp;)/gi;
     textResult = textResult.replace(regexWhitespace, "");
     return setContentText({
       title: result.data[0]["content_title"],
@@ -42,17 +42,18 @@ function DisplayContent({ content_id = 76, route }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 10,
   },
   heading: {
-    fontSize: 30,
-    fontWeight: "bold",
+    fontSize: 23,
+    fontWeight: "normal",
     color: colors.red,
     padding: 10,
   },
   mainText: {
     padding: 10,
-    fontSize: 20,
+    fontSize: 15,
     textAlign: "left",
   },
 });

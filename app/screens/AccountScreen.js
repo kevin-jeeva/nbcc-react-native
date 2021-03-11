@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
 import authStorage from "../AuthContext/authStorage";
@@ -11,10 +10,9 @@ import colors from "../config/colors";
 import userApi from "../api/user";
 import session from "../cache/userSession";
 
-
 function AccountScreen(props) {
   const [staff, setStaff] = useState([]);
-  
+
   const { setUser } = useContext(AuthContext);
   const hadleLogout = () => {
     authStorage.removeUser();
@@ -31,20 +29,24 @@ function AccountScreen(props) {
     });
   };
 
-  
-  getUser();
-    return ( 
-      <Screen>
-        <View style={styles.container}>
-          <Text style={styles.heading}>Your User Account</Text>
-          <Text></Text><Seperator /><Text></Text>
-          <Text style={styles.mainText}>Name: {staff.fname} </Text>
-          <Text style={styles.mainText}>Email: {session.getEmail()}</Text>
-          <Text style={styles.mainText}>Phone: </Text>
-          <Button title="logout" onPress={hadleLogout} />
-        </View>
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  return (
+    <Screen>
+      <View style={styles.container}>
+        <Text style={styles.heading}>Your User Account</Text>
+        <Text></Text>
+        <Seperator />
+        <Text></Text>
+        <Text style={styles.mainText}>Name: {staff.fname} </Text>
+        <Text style={styles.mainText}>Email: {session.getEmail()}</Text>
+        <Text style={styles.mainText}>Phone: </Text>
+        <Button title="logout" onPress={hadleLogout} />
+      </View>
     </Screen>
-    );
+  );
 }
 
 const styles = StyleSheet.create({
