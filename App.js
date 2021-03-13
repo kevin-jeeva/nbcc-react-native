@@ -11,6 +11,8 @@ import DisplayContent from "./app/screens/DisplayContent";
 import authStorage from "./app/AuthContext/authStorage";
 import { cos } from "react-native-reanimated";
 import { get } from "react-native/Libraries/Utilities/PixelRatio";
+import contactUsScreen from "./app/screens/ContactUsScreen.js";
+
 
 export default function App() {
   const [user, setUser] = useState();
@@ -39,5 +41,8 @@ export default function App() {
         {user ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
-  );
+  )
+  return (
+    <contactUsScreen/>
+  )
 }

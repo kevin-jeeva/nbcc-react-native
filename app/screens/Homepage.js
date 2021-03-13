@@ -52,6 +52,19 @@ function Homepage({ navigation }) {
           iconColor={colors.red}
           textColor={styles.articleText}
         />
+        <Holder //Contact us
+          icon={"mail"}
+          holderText={"Contact Us"}
+          iconColor={colors.blue}
+          textColor={styles.articleText}
+          onPress={()=>
+            navigation.navigate("Content",{
+              resource: "Contact",
+              name: "Contact Us",
+            })
+          }
+          
+        />
       </View>
     </Screen>
   );
@@ -66,7 +79,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between",
     padding: 30,
-    marginVertical: "25%",
+    marginVertical: "10%",
   },
 });
 
