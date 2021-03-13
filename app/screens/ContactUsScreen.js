@@ -1,26 +1,21 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import Holder from "../components/Holder";
+import { View, StyleSheet, Text } from "react-native";
 
-import Screen from "../components/screen";
-import colors from "../config/colors";
-import userApi from "../api/user";
-import session from "../cache/userSession";
+const contactUsScreen = () => {
+  return(
+    <View style={styles.contactus}>
+      <Text> Email: nbcc@nbcc.ca </Text>
+      <Text>Call Campuses: (506) 460-6222</Text>
+      <Text>284 Smythe Street, Fredericton NB</Text>
+    </View>
+  ) //end return
+} //end const
 
-function ContactUsScreen(){
-    const { user } = useContext(AuthContext);
-    return (
-      <Screen>
-        <View style={styles.container}>
-          <Text>Contact Us!</Text>
-        </View>
-      </Screen>
-    );
-
-} //end function ContactUs
 
 const styles = StyleSheet.create({
-    
+    contactus:{
+      alignItems: 'center'
+    }
 })
 
-export default ContactUsScreen; 
+export default contactUsScreen; 
