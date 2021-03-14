@@ -5,10 +5,12 @@ import Screen from "../components/screen";
 const ContactUsScreen = () => {
   return (
     <Screen>
-      <View style={styles.contactus}>
-        <Text> Email: nbcc@nbcc.ca </Text>
-        <Text>Call Campuses: (506) 460-6222</Text>
-        <Text>284 Smythe Street, Fredericton NB</Text>
+      <View style={styles.container}>  
+        <Text style={styles.contactus}> 
+          Email: nbcc@nbcc.ca <br/>
+          Call Campuses: (506) 460-6222 <br/>
+          284 Smythe Street, Fredericton NB <br/>
+        </Text>
       </View>
     </Screen>
   ); //end return
@@ -17,6 +19,16 @@ const ContactUsScreen = () => {
 const styles = StyleSheet.create({
   contactus: {
     alignItems: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "black",
+    padding: 20,
+
+  },
+  container:{
+    flex: 1,
+    padding: 25,
+    backgroundColor: "lime",
   },
 });
 
