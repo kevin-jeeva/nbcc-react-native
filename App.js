@@ -12,8 +12,7 @@ import authStorage from "./app/AuthContext/authStorage";
 import Dashboard from "./app/screens/Dashboard";
 import { cos } from "react-native-reanimated";
 import { get } from "react-native/Libraries/Utilities/PixelRatio";
-import contactUsScreen from "./app/screens/ContactUsScreen.js";
-
+import ContactUsScreen from "./app/screens/ContactUsScreen.js";
 
 export default function App() {
   const [user, setUser] = useState();
@@ -36,14 +35,13 @@ export default function App() {
       />
     );
   return (
+    // <Dashboard />
+    // <ContactUsScreen />
     //<ContentScreen />
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer theme={navigationTheme}>
         {user ? <Dashboard /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
-  )
-  return (
-    <contactUsScreen/>
-  )
+  );
 }
