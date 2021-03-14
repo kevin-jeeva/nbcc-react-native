@@ -8,6 +8,7 @@ const Stack = createStackNavigator();
 
 const ArticleNavigator = () => {
   return (
+    
     <Stack.Navigator>
       <Stack.Screen name="Homepage" component={Homepage} />
       <Stack.Screen
