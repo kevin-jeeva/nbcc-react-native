@@ -10,6 +10,10 @@ import ContentScreen from "./app/screens/ContentScreen";
 import DisplayContent from "./app/screens/DisplayContent";
 import authStorage from "./app/AuthContext/authStorage";
 import Dashboard from "./app/screens/Dashboard";
+import { cos } from "react-native-reanimated";
+import { get } from "react-native/Libraries/Utilities/PixelRatio";
+import contactUsScreen from "./app/screens/ContactUsScreen.js";
+
 
 export default function App() {
   const [user, setUser] = useState();
@@ -38,5 +42,8 @@ export default function App() {
         {user ? <Dashboard /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
-  );
+  )
+  return (
+    <contactUsScreen/>
+  )
 }
