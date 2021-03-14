@@ -15,12 +15,13 @@ import { get } from "react-native/Libraries/Utilities/PixelRatio";
 import ContactUsScreen from "./app/screens/ContactUsScreen.js";
 
 export default function App() {
+ 
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
 
   const getUser = async () => {
     const getUserInfo = await authStorage.restoreUser();
-    setUser(JSON.parse(getUserInfo));
+    setUser(JSON.parse(getUserInfo));  
   };
 
   // useEffect(() => {
@@ -45,3 +46,4 @@ export default function App() {
     </AuthContext.Provider>
   );
 }
+
