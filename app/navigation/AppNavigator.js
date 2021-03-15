@@ -5,19 +5,32 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AccountScreen from "../screens/AccountScreen";
 import Homepage from "../screens/Homepage";
 import ArticleNavigator from "./ArticleNavigator";
-
+import DashboardNavi from "./DashboardNavi";
 // BOTTOM PAGE TAB
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen //HOMEPAGE ICON 
+      <Tab.Screen //HOMEPAGE ICON
         name="Homepage"
         component={ArticleNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen //Account ICON
+        name="Dashboard"
+        component={DashboardNavi}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="view-dashboard"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />

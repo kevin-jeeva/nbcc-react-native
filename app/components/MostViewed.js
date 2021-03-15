@@ -1,10 +1,14 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  TouchableHighlight,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { TouchableHighlight, TouchableOpacity } from "react-native";
-
-function Sugesstion({ Data = null, navigation, route }) {
-  const DisplayProgress = ({ item }) => {
+function MostViewed({ Data = null, navigation, route }) {
+  const DisplayMostViewed = ({ item }) => {
     return (
       <TouchableHighlight
         activeOpacity={1}
@@ -17,7 +21,9 @@ function Sugesstion({ Data = null, navigation, route }) {
           <View style={styles.container}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.content_title}</Text>
-              <Text numberOfLines={1}>{item.content_description}</Text>
+              <Text numberOfLines={1} style={styles.desc}>
+                {item.content_description}
+              </Text>
             </View>
             <View style={styles.chevron}>
               <MaterialCommunityIcons
@@ -36,7 +42,7 @@ function Sugesstion({ Data = null, navigation, route }) {
   return (
     <FlatList
       data={Data}
-      renderItem={DisplayProgress}
+      renderItem={DisplayMostViewed}
       keyExtractor={(item) => item.content_id.toString()}
     />
   );
@@ -48,6 +54,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     alignItems: "center",
+  },
+  desc: {
+    marginBottom: 5,
   },
   seperator: {
     width: "100%",
@@ -63,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Sugesstion;
+export default MostViewed;

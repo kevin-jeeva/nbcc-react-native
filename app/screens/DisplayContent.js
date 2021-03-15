@@ -13,7 +13,10 @@ function DisplayContent({ content_id = 76, route }) {
 
   const GetContent = async (id) => {
     const result = await content.getContent(id);
-    if (!result.ok) return console.log("No such content");
+    if (!result.ok) {
+      console.log("No such content");
+      return setContentText(null);
+    }
     let textResult = result.data[0]["content_text"].replace(regex, "");
     const regexWhitespace = /(&ldquo;|&nbsp;|&rsquo;|&mdash;|&lsquo;|&amp;)/gi;
     textResult = textResult.replace(regexWhitespace, "");

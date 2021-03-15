@@ -12,7 +12,10 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
 
   const getContents = async () => {
     const result = await contentApi.content(route.params.resource);
-    if (!result.ok) return console.log("No resource");
+    if (!result.ok) {
+      console.log("No resource");
+      return setContent(null);
+    }
     return setContent(result.data);
   };
 
@@ -54,11 +57,15 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
 
   return (
     <Screen>
-      <FlatList
-        data={content}
-        renderItem={Content}
-        keyExtractor={(item) => item.content_id.toString()}
-      />
+      {content == null ? (
+        <Text>No {route.params.resource}</Text>
+      ) : (
+        <FlatList
+          data={content}
+          renderItem={Content}
+          keyExtractor={(item) => item.content_id.toString()}
+        />
+      )}
     </Screen>
   );
 }
