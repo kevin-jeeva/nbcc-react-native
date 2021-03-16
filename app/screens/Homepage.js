@@ -57,13 +57,7 @@ function Homepage({ navigation }) {
           holderText={"Contact Us"}
           iconColor={colors.blue}
           textColor={styles.articleText}
-          onPress={()=>
-            navigation.navigate("Content",{
-              resource: "Contact",
-              name: "Contact Us",
-            })
-          }
-          
+          onPress={() => navigation.navigate("ContactUs")}
         />
       </View>
     </Screen>
