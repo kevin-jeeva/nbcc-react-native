@@ -28,9 +28,9 @@ function AccountScreen(props) {
         <Text></Text>
         <Seperator />
         <Text></Text>
-        <Text style={styles.mainText}>Name: {user[0].user_name} </Text>
-        <Text style={styles.mainText}>Email: {user[0].email}</Text>
-        <Text style={styles.mainText}>Phone: </Text>
+        <Text style={styles.mainText}><Text style={styles.bold}>Name:</Text> {user[0].user_name} </Text>
+        <Text style={styles.mainText}><Text style={styles.bold}>Email:</Text> {user[0].email}</Text>
+        <Text style={styles.mainText}><Text style={styles.bold}>Phone:</Text> </Text>
         <AppButton
           text={"Logout"}
           onPress={handleLogout}
@@ -48,14 +48,17 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 30,
     fontWeight: "bold",
-    color: colors.green,
+    color: "#007599",
     marginTop: 25,
-    marginLeft: 50,
+    textAlign: "center",
   },
   mainText: {
     padding: 10,
     fontSize: 20,
     textAlign: "left",
+  },
+  bold: {
+    fontWeight: "bold",
   },
   logoutBtn: {
     backgroundColor: colors.primary,
