@@ -15,10 +15,14 @@ const getUserbyEmail = (email) => client.get(endpoint + "/" + email);
 const login = (email, password) =>
   client.post(endpoint + "/" + email + "/" + password);
 
+//get user phone by their id
+const getPhoneById = (userId) => client.get(endpoint + "/" + userId);
+
 
 export default {
   getAllUsers,
   getUserbyEmail,
   getUser,
   login,
+  getPhoneById,
 };
