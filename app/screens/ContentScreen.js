@@ -6,9 +6,17 @@ import Screen from "../components/screen";
 import colors from "../config/colors";
 import contentApi from "../api/content";
 import { FlatList } from "react-native-gesture-handler";
+import cacheStorage from "../cache/cacheStorage";
 
 function ContentScreen({ resource = "Articles", navigation, route }) {
   const [content, setContent] = useState([]);
+
+  const AddLastViewed = (content_id) => {
+    cacheStorage.storeData("Last_viewed", { "content_id": content_id });    
+    const value = cacheStorage.getData("Last_viewed");
+    console.log(value.content_id);    
+  
+  };
 
   const getContents = async () => {
     const result = await contentApi.content(route.params.resource);
@@ -29,9 +37,10 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
         style={styles.textContainer}
         activeOpacity={1}
         underlayColor={colors.underLay}
-        onPress={() =>
-          navigation.navigate("ShowContent", { content_id: item.content_id })
-        }
+        onPress={() => {
+          AddLastViewed(item.content_id);
+          navigation.navigate("ShowContent", { content_id: item.content_id });
+        }}
       >
         <>
           <View style={styles.cotentContainer}>

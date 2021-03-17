@@ -14,25 +14,12 @@ import AppButton from "../components/AppButton";
 function AccountScreen(props) {
   const [staff, setStaff] = useState([]);
 
-  const { setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const handleLogout = () => {
     authStorage.removeUser();
     setUser(null);
   };
 
-  const getUser = async () => {
-    email = session.getEmail();
-    const result = await userApi.getUserbyEmail(email);
-    if (!result.ok) return console.log("No User " + email);
-    let nameResult = result.data[0]["first_name"];
-    return setStaff({
-      fname: nameResult,
-    });
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
 
   return (
     <Screen>
@@ -41,8 +28,8 @@ function AccountScreen(props) {
         <Text></Text>
         <Seperator />
         <Text></Text>
-        <Text style={styles.mainText}>Name: {staff.fname} </Text>
-        <Text style={styles.mainText}>Email: {session.getEmail()}</Text>
+        <Text style={styles.mainText}>Name: {user[0].user_name} </Text>
+        <Text style={styles.mainText}>Email: {user[0].email}</Text>
         <Text style={styles.mainText}>Phone: </Text>
         <AppButton
           text={"Logout"}
