@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
 import authStorage from "../AuthContext/authStorage";
 import AuthContext from "../AuthContext/context";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "../components/screen";
 import Seperator from "../components/Seperator";
@@ -10,8 +11,12 @@ import colors from "../config/colors";
 import userApi from "../api/user";
 import session from "../cache/userSession";
 import AppButton from "../components/AppButton";
+import {
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
 
-function AccountScreen(props) {
+function AccountScreen({ navigation, route }) {
   const [phone, setPhone] = useState([]);
   const { user, setUser } = useContext(AuthContext);
 
@@ -55,6 +60,18 @@ function AccountScreen(props) {
           To change your password, phone number, email, or notification settings
           please visit: nbccstaffwellness.epizy.com{" "}
         </Text>
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate("ChangePassword")}
+          style={styles.changePassword}
+        >
+          <MaterialCommunityIcons name="lock-reset" size={30} color={"black"} />
+          <Text style={styles.changePasswordText}>Change Password</Text>
+          <MaterialCommunityIcons
+            name="chevron-right"
+            size={30}
+            color={"black"}
+          />
+        </TouchableWithoutFeedback>
         <AppButton
           text={"Logout"}
           onPress={handleLogout}
@@ -68,6 +85,20 @@ function AccountScreen(props) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
+  },
+  changePassword: {
+    width: "100%",
+    height: "30%",
+    borderRadius: 10,
+    flexDirection: "row",
+    backgroundColor: colors.light,
+    padding: 10,
+    alignItems: "center",
+  },
+  changePasswordText: {
+    width: "75%",
+    fontSize: 20,
+    marginLeft: 10,
   },
   heading: {
     fontSize: 30,
