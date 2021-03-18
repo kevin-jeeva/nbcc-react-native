@@ -11,11 +11,8 @@ import cacheStorage from "../cache/cacheStorage";
 function ContentScreen({ resource = "Articles", navigation, route }) {
   const [content, setContent] = useState([]);
 
-  const AddLastViewed = (content_id) => {
-    cacheStorage.storeData("Last_viewed", { "content_id": content_id });    
-    const value = cacheStorage.getData("Last_viewed");
-    console.log(value.content_id);    
-  
+  const AddLastViewed = (content_id, content_title) => {
+    cacheStorage.storeData("Last_viewed", { content_id, content_title });
   };
 
   const getContents = async () => {
@@ -38,7 +35,7 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
         activeOpacity={1}
         underlayColor={colors.underLay}
         onPress={() => {
-          AddLastViewed(item.content_id);
+          AddLastViewed(item.content_id, item.content_title);
           navigation.navigate("ShowContent", { content_id: item.content_id });
         }}
       >

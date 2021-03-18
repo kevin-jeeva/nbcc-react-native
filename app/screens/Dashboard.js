@@ -12,12 +12,15 @@ import AppText from "../components/AppText";
 import Sugesstion from "../components/Sugesstion";
 import { cos } from "react-native-reanimated";
 import MostViewed from "../components/MostViewed";
+import cacheStorage from "../cache/cacheStorage";
+import LastViewed from "../components/LastViewed";
 
 function Dashboard({ navigation, route }) {
   const { user } = useContext(AuthContext);
   const [progressValue, setProgressValue] = useState([]);
   const [suggestion, setSuggestion] = useState([]);
   const [mostViewed, setMostViewed] = useState([]);
+  const [lastViewed, setLastViewed] = useState([]);
   //get the progress
   const getProgress = async (staff_id) => {
     const result = await progress.GetProgressValue(staff_id);
@@ -45,12 +48,19 @@ function Dashboard({ navigation, route }) {
     return setMostViewed(result.data);
   };
 
+  //get last Viewed
+  const getLastViewed = async () => {
+    const result = await cacheStorage.getData("Last_viewed");
+    setLastViewed(result);
+  };
+
   useEffect(() => {
     let staff_id = user[0]["staff_id"];
     getProgress(staff_id);
     getSuggestion(staff_id);
     getMostViewed(staff_id);
-  }, []);
+    getLastViewed();
+  }, [lastViewed]);
 
   const DisplayProgress = ({ item }) => {
     return (
@@ -102,6 +112,15 @@ function Dashboard({ navigation, route }) {
               navigation={navigation}
               route={route}
               Data={mostViewed}
+            />
+          </View>
+          <View style={styles.progressContainer}>
+            <Text style={styles.titleText}>Last Viewed</Text>
+            <View style={styles.seperator}></View>
+            <LastViewed
+              navigation={navigation}
+              route={route}
+              Data={lastViewed}
             />
           </View>
         </>
