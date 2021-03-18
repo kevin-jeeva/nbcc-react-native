@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
 import * as Progress from "react-native-progress";
 import AuthContext from "../AuthContext/context";
 import Screen from "../components/screen";
@@ -21,6 +27,19 @@ function Dashboard({ navigation, route }) {
   const [suggestion, setSuggestion] = useState([]);
   const [mostViewed, setMostViewed] = useState([]);
   const [lastViewed, setLastViewed] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  //onRefresh
+  const onRefresh = () => {
+    setRefreshing(true);
+    let staff_id = user[0]["staff_id"];
+    getProgress(staff_id);
+    getSuggestion(staff_id);
+    getMostViewed(staff_id);
+    getLastViewed();
+    setRefreshing(false);
+  };
+
   //get the progress
   const getProgress = async (staff_id) => {
     const result = await progress.GetProgressValue(staff_id);
@@ -60,7 +79,7 @@ function Dashboard({ navigation, route }) {
     getSuggestion(staff_id);
     getMostViewed(staff_id);
     getLastViewed();
-  }, [lastViewed]);
+  }, []);
 
   const DisplayProgress = ({ item }) => {
     return (
@@ -84,7 +103,11 @@ function Dashboard({ navigation, route }) {
 
   return (
     <Screen Newstyle={styles.screen}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <>
           <View style={styles.progressContainer}>
             <Text style={styles.titleText}>Progress</Text>
@@ -114,15 +137,7 @@ function Dashboard({ navigation, route }) {
               Data={mostViewed}
             />
           </View>
-          <View style={styles.progressContainer}>
-            <Text style={styles.titleText}>Last Viewed</Text>
-            <View style={styles.seperator}></View>
-            <LastViewed
-              navigation={navigation}
-              route={route}
-              Data={lastViewed}
-            />
-          </View>
+          <LastViewed navigation={navigation} Data={lastViewed} />
         </>
       </ScrollView>
     </Screen>

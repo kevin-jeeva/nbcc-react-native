@@ -33,11 +33,15 @@ function LastViewed({ Data = null, navigation, route }) {
   };
 
   return (
-    <FlatList
-      data={Data}
-      renderItem={DisplayLastViewed}
-      keyExtractor={(item) => item.content_id.toString()}
-    />
+    <View style={styles.progressContainer}>
+      <Text style={styles.titleText}>Last Viewed</Text>
+      <View style={styles.tseperator}></View>
+      <FlatList
+        data={Data}
+        renderItem={DisplayLastViewed}
+        keyExtractor={(item) => item.content_id.toString()}
+      />
+    </View>
   );
 }
 
@@ -51,10 +55,10 @@ const styles = StyleSheet.create({
   desc: {
     marginBottom: 5,
   },
-  seperator: {
+  tseperator: {
     width: "100%",
     height: "1%",
-    backgroundColor: "black",
+    backgroundColor: "white",
   },
   textContainer: {
     width: "90%",
@@ -62,6 +66,27 @@ const styles = StyleSheet.create({
   title: {
     marginVertical: 10,
     fontSize: 20,
+  },
+  progressContainer: {
+    borderRadius: 15,
+    marginVertical: 15,
+    marginHorizontal: 10,
+    overflow: "hidden",
+    borderColor: "#737373",
+    borderWidth: 1,
+  },
+  seperator: {
+    width: "100%",
+    height: "1%",
+    backgroundColor: "black",
+  },
+  titleText: {
+    padding: 10,
+    fontSize: 20,
+    alignSelf: "center",
+    backgroundColor: "#737373",
+    color: "white",
+    width: "100%",
   },
 });
 
