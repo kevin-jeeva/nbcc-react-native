@@ -12,7 +12,7 @@ import session from "../cache/userSession";
 import AppButton from "../components/AppButton";
 
 function AccountScreen(props) {
-  const [staff, setStaff] = useState([]);
+  const [phone, setPhone] = useState([]);
   const { user, setUser } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -20,21 +20,17 @@ function AccountScreen(props) {
     setUser(null);
   };
 
-  const getUser = async () => {
+  const getUserPhone = async () => {
     const result = await userApi.getPhoneById(user[0].staff_id);
-   
     if (!result.ok) {
       console.log("Error finding user: " + user[0].email);
-      return setStaff(null);
+      return setPhone(null);
     }
-    let phone =  result.data[0]["user_phone_no"];
-    console.log("User: " + user[0].email + " " + phone);
-    
-    return setStaff({phoneNum: result.data[0]['user_phone_no']});
+    return setPhone(result.data[0].user_phone_no);
   };
 
   useEffect(() => {
-    getUser();
+    getUserPhone();
   }, []);
 
   return (
@@ -44,10 +40,21 @@ function AccountScreen(props) {
         <Text></Text>
         <Seperator />
         <Text></Text>
-        <Text style={styles.mainText}><Text style={styles.bold}>Username:</Text> {user[0].user_name} </Text>
-        <Text style={styles.mainText}><Text style={styles.bold}>Email:</Text> {user[0].email}</Text>
-        <Text style={styles.mainText}><Text style={styles.bold}>Phone:</Text> {staff.phoneNum} </Text><Text></Text>
-        <Text style={styles.subText}>To change your password, phone number, email, or notification settings please visit: nbccstaffwellness.epizy.com </Text>
+        <Text style={styles.mainText}>
+          <Text style={styles.bold}>Username:</Text> {user[0].user_name}{" "}
+        </Text>
+        <Text style={styles.mainText}>
+          <Text style={styles.bold}>Email:</Text> {user[0].email}
+        </Text>
+        <Text style={styles.mainText}>
+          <Text style={styles.bold}> Phone: </Text>
+          {phone}
+        </Text>
+        <Text></Text>
+        <Text style={styles.subText}>
+          To change your password, phone number, email, or notification settings
+          please visit: nbccstaffwellness.epizy.com{" "}
+        </Text>
         <AppButton
           text={"Logout"}
           onPress={handleLogout}
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 15,
     textAlign: "left",
-  }
+  },
 });
 
 export default AccountScreen;

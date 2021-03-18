@@ -16,8 +16,7 @@ const login = (email, password) =>
   client.post(endpoint + "/" + email + "/" + password);
 
 //get user phone by their id
-const getPhoneById = (userId) => client.get(endpoint + "/" + userId);
-
+const getPhoneById = (userId) => client.get(endpoint + "/phone/" + userId);
 
 export default {
   getAllUsers,
