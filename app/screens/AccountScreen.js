@@ -13,13 +13,29 @@ import AppButton from "../components/AppButton";
 
 function AccountScreen(props) {
   const [staff, setStaff] = useState([]);
-
   const { user, setUser } = useContext(AuthContext);
+
   const handleLogout = () => {
     authStorage.removeUser();
     setUser(null);
   };
 
+  const getUser = async () => {
+    const result = await userApi.getPhoneById(user[0].staff_id);
+   
+    if (!result.ok) {
+      console.log("Error finding user: " + user[0].email);
+      return setStaff(null);
+    }
+    let phone =  result.data[0]["user_phone_no"];
+    console.log("User: " + user[0].email + " " + phone);
+    
+    return setStaff({phoneNum: result.data[0]['user_phone_no']});
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <Screen>
@@ -28,9 +44,10 @@ function AccountScreen(props) {
         <Text></Text>
         <Seperator />
         <Text></Text>
-        <Text style={styles.mainText}>Name: {user[0].user_name} </Text>
-        <Text style={styles.mainText}>Email: {user[0].email}</Text>
-        <Text style={styles.mainText}>Phone: </Text>
+        <Text style={styles.mainText}><Text style={styles.bold}>Username:</Text> {user[0].user_name} </Text>
+        <Text style={styles.mainText}><Text style={styles.bold}>Email:</Text> {user[0].email}</Text>
+        <Text style={styles.mainText}><Text style={styles.bold}>Phone:</Text> {staff.phoneNum} </Text><Text></Text>
+        <Text style={styles.subText}>To change your password, phone number, email, or notification settings please visit: nbccstaffwellness.epizy.com </Text>
         <AppButton
           text={"Logout"}
           onPress={handleLogout}
@@ -48,18 +65,26 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 30,
     fontWeight: "bold",
-    color: colors.green,
+    color: "#007599",
     marginTop: 25,
-    marginLeft: 50,
+    textAlign: "center",
   },
   mainText: {
     padding: 10,
     fontSize: 20,
     textAlign: "left",
   },
+  bold: {
+    fontWeight: "bold",
+  },
   logoutBtn: {
     backgroundColor: colors.primary,
   },
+  subText: {
+    padding: 10,
+    fontSize: 15,
+    textAlign: "left",
+  }
 });
 
 export default AccountScreen;
