@@ -8,11 +8,6 @@ import AppTextInput from "../components/AppTextInput";
 import Screen from "../components/screen";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
-import userApi from "../api/user";
-import { useContext } from "react";
-import AuthContext from "../AuthContext/context";
-import authStorage from "../AuthContext/authStorage";
-import session from "../cache/userSession";
 import user from "../api/user";
 
 const validationSchema = Yup.object().shape({
