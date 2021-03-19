@@ -1,18 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, TouchableHighlight } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "../components/screen";
 import colors from "../config/colors";
 import contentApi from "../api/content";
 import { FlatList } from "react-native-gesture-handler";
+import cacheStorage from "../cache/cacheStorage";
 
 function ContentScreen({ resource = "Articles", navigation, route }) {
   const [content, setContent] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  //onrefresh
+  const onRefresh = () => {
+    setRefreshing(true);
+    getContents();
+    setRefreshing(false);
+  };
+
+  const AddLastViewed = (content_id, content_title) => {
+    cacheStorage.storeData("Last_viewed", { content_id, content_title });
+  };
 
   const getContents = async () => {
     const result = await contentApi.content(route.params.resource);
-    if (!result.ok) return console.log("No resource");
+    if (!result.ok) {
+      console.log("No resource");
+      return setContent(null);
+    }
     return setContent(result.data);
   };
 
@@ -26,9 +49,10 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
         style={styles.textContainer}
         activeOpacity={1}
         underlayColor={colors.underLay}
-        onPress={() =>
-          navigation.navigate("ShowContent", { content_id: item.content_id })
-        }
+        onPress={() => {
+          AddLastViewed(item.content_id, item.content_title);
+          navigation.navigate("ShowContent", { content_id: item.content_id });
+        }}
       >
         <>
           <View style={styles.cotentContainer}>
@@ -54,11 +78,21 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
 
   return (
     <Screen>
-      <FlatList
-        data={content}
-        renderItem={Content}
-        keyExtractor={(item) => item.content_id.toString()}
-      />
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        {content == null ? (
+          <Text>No {route.params.resource}</Text>
+        ) : (
+          <FlatList
+            data={content}
+            renderItem={Content}
+            keyExtractor={(item) => item.content_id.toString()}
+          />
+        )}
+      </ScrollView>
     </Screen>
   );
 }

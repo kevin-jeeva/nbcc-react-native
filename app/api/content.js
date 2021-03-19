@@ -2,7 +2,9 @@ import client from "./client";
 
 const endpoint = "/content";
 
-const content = (resource) => client.get(endpoint + "/" + resource);
+const content = (resource) => {  
+  return client.get(endpoint + "/" + resource);
+};
 
 const getContent = (id) => client.get(endpoint + "/id" + "/" + id);
 

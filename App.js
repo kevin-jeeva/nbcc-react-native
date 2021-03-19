@@ -9,8 +9,10 @@ import navigationTheme from "./app/navigation/navigationTheme";
 import ContentScreen from "./app/screens/ContentScreen";
 import DisplayContent from "./app/screens/DisplayContent";
 import authStorage from "./app/AuthContext/authStorage";
+import Dashboard from "./app/screens/Dashboard";
 import { cos } from "react-native-reanimated";
 import { get } from "react-native/Libraries/Utilities/PixelRatio";
+import ContactUsScreen from "./app/screens/ContactUsScreen.js";
 
 export default function App() {
   const [user, setUser] = useState();
@@ -33,7 +35,9 @@ export default function App() {
       />
     );
   return (
-    // <ContentScreen />
+    // <Dashboard />
+    // <ContactUsScreen />
+    //<ContentScreen />
     <AuthContext.Provider value={{ user, setUser }}>
       <NavigationContainer theme={navigationTheme}>
         {user ? <AppNavigator /> : <AuthNavigator />}

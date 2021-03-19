@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ContentScreen from "../screens/ContentScreen";
 import DisplayContent from "../screens/DisplayContent";
 import Homepage from "../screens/Homepage";
+import ContactUsScreen from "../screens/ContactUsScreen";
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const ArticleNavigator = () => {
         options={{ headerShown: false }}
         component={DisplayContent}
       />
+      <Stack.Screen name="ContactUs" component={ContactUsScreen} />
     </Stack.Navigator>
   );
 };
