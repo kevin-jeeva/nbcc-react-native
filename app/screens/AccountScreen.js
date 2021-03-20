@@ -71,7 +71,7 @@ function AccountScreen({ navigation, route }) {
             <Text style={styles.bold}>Email:</Text> {user[0].email}
           </Text>
           <Text style={styles.mainText}>
-            <Text style={styles.bold}> Phone: </Text>
+            <Text style={styles.bold}>Phone: </Text>
             {phone}
           </Text>
           <TouchableWithoutFeedback

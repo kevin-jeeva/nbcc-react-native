@@ -99,7 +99,7 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
 
 const styles = StyleSheet.create({
   arrow: {
-    width: "100%%",
+    width: "100%",
   },
   chevron: {},
   line: {

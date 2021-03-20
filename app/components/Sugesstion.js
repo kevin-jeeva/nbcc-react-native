@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   seperator: {
     width: "100%",
     height: "1%",
-    backgroundColor: "black",
+    backgroundColor: "#ddd",
   },
   textContainer: {
     width: "90%",

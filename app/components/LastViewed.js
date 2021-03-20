@@ -26,7 +26,7 @@ function LastViewed({ Data = null, navigation, route }) {
               />
             </View>
           </View>
-          <View style={styles.seperator}></View>
+          <View style={styles.separator}></View>
         </>
       </TouchableHighlight>
     );
@@ -35,7 +35,7 @@ function LastViewed({ Data = null, navigation, route }) {
   return (
     <View style={styles.progressContainer}>
       <Text style={styles.titleText}>Last Viewed</Text>
-      <View style={styles.tseperator}></View>
+      <View style={styles.tseparator}></View>
       <FlatList
         data={Data}
         renderItem={DisplayLastViewed}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   desc: {
     marginBottom: 5,
   },
-  tseperator: {
+  tseparator: {
     width: "100%",
     height: "1%",
     backgroundColor: "white",
@@ -68,23 +68,24 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   progressContainer: {
-    borderRadius: 15,
+    borderRadius: 5,
     marginVertical: 15,
     marginHorizontal: 10,
     overflow: "hidden",
-    borderColor: "#737373",
+    borderColor: "#ddd",
     borderWidth: 1,
+    backgroundColor: "white"
   },
-  seperator: {
+  separator: {
     width: "100%",
     height: "1%",
-    backgroundColor: "black",
+    backgroundColor: "#ddd",
   },
   titleText: {
     padding: 10,
     fontSize: 20,
     alignSelf: "center",
-    backgroundColor: "#737373",
+    backgroundColor: "#007599",
     color: "white",
     width: "100%",
   },

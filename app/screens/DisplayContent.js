@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 23,
     fontWeight: "normal",
-    color: colors.red,
+    color: "#007599",
     padding: 10,
   },
   mainText: {

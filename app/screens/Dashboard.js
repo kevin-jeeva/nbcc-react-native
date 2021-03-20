@@ -92,7 +92,7 @@ function Dashboard({ navigation, route }) {
             animated
             animationType={"decay"}
             progress={item.progressVal}
-            color={"red"}
+            color={"#829600"}
             height={20}
             width={250}
           />
@@ -111,7 +111,7 @@ function Dashboard({ navigation, route }) {
         <>
           <View style={styles.progressContainer}>
             <Text style={styles.titleText}>Progress</Text>
-            <View style={styles.seperator}></View>
+            <View style={styles.separator}></View>
 
             <FlatList
               data={progressValue}
@@ -121,7 +121,7 @@ function Dashboard({ navigation, route }) {
           </View>
           <View style={styles.progressContainer}>
             <Text style={styles.titleText}>Suggestion</Text>
-            <View style={styles.seperator}></View>
+            <View style={styles.separator}></View>
             <Sugesstion
               navigation={navigation}
               route={route}
@@ -130,7 +130,7 @@ function Dashboard({ navigation, route }) {
           </View>
           <View style={styles.progressContainer}>
             <Text style={styles.titleText}>Most Viewed</Text>
-            <View style={styles.seperator}></View>
+            <View style={styles.separator}></View>
             <MostViewed
               navigation={navigation}
               route={route}
@@ -150,12 +150,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f2f2",
   },
   progressContainer: {
-    borderRadius: 15,
+    borderRadius: 5,
     marginVertical: 15,
     marginHorizontal: 10,
     overflow: "hidden",
-    borderColor: "#737373",
+    borderColor: "#ddd",
     borderWidth: 1,
+    backgroundColor: "white"
   },
   container: {
     width: "100%",
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
   },
-  seperator: {
+  separator: {
     width: "100%",
     height: "1%",
     backgroundColor: "white",
@@ -178,7 +179,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     alignSelf: "center",
-    backgroundColor: "#737373",
+    backgroundColor: "#007599",
     color: "white",
     width: "100%",
   },
