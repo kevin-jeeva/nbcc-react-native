@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
     color: colors.black,
     padding: 10,
     backgroundColor: colors.gray200,
-    minHeight: 100
+    minHeight: 100,
+    justifyContent: "center"
   },
   heading: {
     fontSize: 30,
