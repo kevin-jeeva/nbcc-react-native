@@ -34,7 +34,9 @@ function DisplayContent({ content_id = 76, route }) {
     <Screen>
       <View style={styles.container}>
         <ScrollView>
-          <Text style={styles.heading}>{contentText.title}</Text>
+          <View style={styles.containerTitle}>
+            <Text style={styles.heading}>{contentText.title}</Text>
+          </View>
           <Seperator />
           <Text style={styles.mainText}>{contentText.text}</Text>
         </ScrollView>
@@ -48,11 +50,15 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
   },
-  heading: {
-    fontSize: 23,
-    fontWeight: "normal",
-    color: "#007599",
+  containerTitle: {
+    color: colors.black,
     padding: 10,
+    backgroundColor: colors.gray200,
+    minHeight: 100
+  },
+  heading: {
+    fontSize: 30,
+    fontWeight: "normal",
   },
   mainText: {
     padding: 10,

@@ -9,7 +9,7 @@ function WelcomeScreen(props) {
   return (
     <Screen>
       <View style={styles.container}>
-        <Text>Welcom Screen</Text>
+        <Text>Welcome Screen</Text>
       </View>
     </Screen>
   );

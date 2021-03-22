@@ -12,12 +12,13 @@ function Holder({
   size = 40,
   iconColor = "black",
   holderText,
+  holderTheme,
   textColor,
   onPress,
 }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
-      <View style={[styles.container, containerColor]}>
+      <View style={[styles.container, holderTheme]}>
         <MaterialCommunityIcons
           style={styles.icon}
           name={icon}
@@ -32,16 +33,28 @@ function Holder({
 
 const styles = StyleSheet.create({
   container: {
-    width: 120,
-    height: 120,
-    borderRadius: 20,
-    backgroundColor: colors.light,
+    flexDirection:"row",
+    height: 110,
+    paddingLeft: 25,
+    marginBottom: 25,
     alignItems: "center",
-    justifyContent: "center",
-    marginVertical: 20,
+    borderTopWidth: 7,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 5,
   },
   text: {
-    color: colors.white,
+    minWidth: 500,
+    paddingLeft: 15,
+    fontSize: 20,
+    color: colors.gray700
   },
 });
 

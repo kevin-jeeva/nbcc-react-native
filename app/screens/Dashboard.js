@@ -20,6 +20,7 @@ import { cos } from "react-native-reanimated";
 import MostViewed from "../components/MostViewed";
 import cacheStorage from "../cache/cacheStorage";
 import LastViewed from "../components/LastViewed";
+import colors from "../config/colors";
 
 function Dashboard({ navigation, route }) {
   const { user } = useContext(AuthContext);
@@ -92,7 +93,7 @@ function Dashboard({ navigation, route }) {
             animated
             animationType={"decay"}
             progress={item.progressVal}
-            color={"#829600"}
+            color={colors.urbangreen}
             height={20}
             width={250}
           />
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderColor: "#ddd",
     borderWidth: 1,
-    backgroundColor: "white"
+    backgroundColor: colors.white
   },
   container: {
     width: "100%",
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
   separator: {
     width: "100%",
     height: "1%",
-    backgroundColor: "white",
+    backgroundColor: colors.white,
   },
   text: {
     marginRight: 10,
@@ -179,8 +180,8 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     alignSelf: "center",
-    backgroundColor: "#007599",
-    color: "white",
+    backgroundColor: colors.oceanblue,
+    color: colors.white,
     width: "100%",
   },
 });

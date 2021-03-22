@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   error: {
-    color: colors.error,
+    color: colors.danger,
     fontSize: 10,
     alignSelf: "flex-start",
     marginLeft: 10,
