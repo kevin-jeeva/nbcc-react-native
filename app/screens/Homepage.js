@@ -14,6 +14,7 @@ function Homepage({ navigation }) {
         <>
           <View style={styles.container}>
             <Holder //Articles
+              imageCard={require("../../assets/imgCards/1-wellbeing-articles.jpg")}
               icon={"file-document-outline"}
               holderText={"Articles"}
               iconColor={colors.oceanblue}
@@ -26,6 +27,7 @@ function Homepage({ navigation }) {
               }
             />
             <Holder //Events
+              imageCard={require("../../assets/imgCards/2-wellbeing-events.jpg")}
               icon={"calendar"}
               holderText={"Events"}
               iconColor={colors.urbangreen}
@@ -38,6 +40,7 @@ function Homepage({ navigation }) {
               }
             />
             <Holder //SupportServices
+              imageCard={require("../../assets/imgCards/4-wellbeing-support.jpg")}
               icon={"face-agent"}
               holderText={"Support Services"}
               iconColor={colors.possibilityblue}
@@ -50,12 +53,14 @@ function Homepage({ navigation }) {
               }
             />
             <Holder //Notification
+              imageCard={require("../../assets/imgCards/5-wellbeing-notifications.jpg")}
               icon={"bell"}
               holderText={"Notifications"}
               iconColor={colors.fieldgold}
               holderTheme={[styles.cards, styles.notifications]}
             />
             <Holder //Contact us
+              imageCard={require("../../assets/imgCards/6-wellbeing-contactus.jpg")}
               icon={"forum"}
               holderText={"Contact Us"}
               iconColor={colors.oceanblue}

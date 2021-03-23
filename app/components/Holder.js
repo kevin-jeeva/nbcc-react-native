@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
@@ -8,6 +8,7 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 function Holder({
   containerColor,
+  imageCard,
   icon = "book",
   size = 40,
   iconColor = "black",
@@ -18,7 +19,11 @@ function Holder({
 }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
+      <Image style={styles.logo}
+        source={imageCard}
+      />
       <View style={[styles.container, holderTheme]}>
+        
         <MaterialCommunityIcons
           style={styles.icon}
           name={icon}
@@ -34,13 +39,13 @@ function Holder({
 const styles = StyleSheet.create({
   container: {
     flexDirection:"row",
-    height: 110,
+    height: 80,
     paddingLeft: 25,
-    marginBottom: 15,
+    marginBottom: 20,
     alignItems: "center",
     borderTopWidth: 7,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -56,6 +61,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.gray700
   },
+  logo: {
+    width: '100%',
+    height: 125,
+    resizeMode: 'cover',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  }
 });
 
 export default Holder;
