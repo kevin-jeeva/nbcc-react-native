@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     height: 110,
     paddingLeft: 25,
-    marginBottom: 25,
+    marginBottom: 15,
     alignItems: "center",
     borderTopWidth: 7,
     borderBottomLeftRadius: 15,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   text: {
-    minWidth: 500,
+    minWidth: 300,
     paddingLeft: 15,
     fontSize: 20,
     color: colors.gray700

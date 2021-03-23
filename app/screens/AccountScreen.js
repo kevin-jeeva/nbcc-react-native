@@ -125,12 +125,11 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 7,
+      height: 3,
     },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-
-    elevation: 15,
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 5,
   },
 
   changePassword: {
