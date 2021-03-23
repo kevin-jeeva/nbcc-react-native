@@ -12,7 +12,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Screen from "../components/screen";
 import colors from "../config/colors";
 import contentApi from "../api/content";
-import { FlatList } from "react-native-gesture-handler";
+import {
+  FlatList,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
 import cacheStorage from "../cache/cacheStorage";
 
 function ContentScreen({ resource = "Articles", navigation, route }) {
@@ -83,6 +86,27 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
+        {/*this should be visible for events only*/}
+        {route.params.resource === "Events" ? (
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate("RockRes")}
+          >
+            <View style={styles.RockRes}>
+              <MaterialCommunityIcons
+                name="clipboard-list-outline"
+                size={30}
+                color={"black"}
+              />
+              <Text style={styles.RockTitle}>Rock Your Resolution</Text>
+              <MaterialCommunityIcons
+                name="chevron-right"
+                size={30}
+                color={"black"}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+        ) : null}
+
         {content == null ? (
           <Text>No {route.params.resource}</Text>
         ) : (
@@ -128,6 +152,22 @@ const styles = StyleSheet.create({
   },
   description: {
     marginVertical: 10,
+  },
+  RockRes: {
+    width: "100%",
+    backgroundColor: colors.light,
+    height: 50,
+    alignItems: "center",
+    flexDirection: "row",
+    borderRadius: 20,
+    marginVertical: 10,
+    padding: 10,
+  },
+  RockTitle: {
+    fontSize: 20,
+    fontWeight: "300",
+    width: "70%",
+    marginHorizontal: 20,
   },
 });
 
