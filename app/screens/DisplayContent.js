@@ -51,15 +51,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   containerTitle: {
-    color: colors.black,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray400,
     padding: 10,
-    backgroundColor: colors.gray200,
-    minHeight: 100,
+    minHeight: 50,
     justifyContent: "center"
   },
   heading: {
     fontSize: 30,
-    fontWeight: "normal",
+    fontWeight: "bold",
+    color: colors.oceanblue,
+    textAlign: "center"
   },
   mainText: {
     padding: 10,

@@ -61,7 +61,6 @@ function AccountScreen({ navigation, route }) {
         }
       >
         <View style={styles.container}>
-          <Text style={styles.heading}>Your Profile Settings</Text>
           <Text style={styles.mainText}>
             <Text style={styles.bold}>Username: </Text> {user[0].user_name}{" "}{"\n"}
             <Text style={styles.bold}>Email: </Text> {user[0].email}{"\n"}
