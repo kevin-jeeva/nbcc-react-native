@@ -22,6 +22,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native-gesture-handler";
+import { color } from "react-native-reanimated";
 
 function AccountScreen({ navigation, route }) {
   const [phone, setPhone] = useState([]);
@@ -53,27 +54,19 @@ function AccountScreen({ navigation, route }) {
   }, []);
 
   return (
-    <Screen>
+    <Screen Newstyle={styles.screen}>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
         <View style={styles.container}>
-          <Text style={styles.heading}>Your User Account</Text>
-          <Text></Text>
-          <Seperator />
-          <Text></Text>
           <Text style={styles.mainText}>
-            <Text style={styles.bold}>Username:</Text> {user[0].user_name}{" "}
+            <Text style={styles.bold}>Username: </Text> {user[0].user_name}{" "}{"\n"}
+            <Text style={styles.bold}>Email: </Text> {user[0].email}{"\n"}
+            <Text style={styles.bold}>Phone: </Text> {phone}{"\n"}
           </Text>
-          <Text style={styles.mainText}>
-            <Text style={styles.bold}>Email:</Text> {user[0].email}
-          </Text>
-          <Text style={styles.mainText}>
-            <Text style={styles.bold}> Phone: </Text>
-            {phone}
-          </Text>
+
           <TouchableWithoutFeedback
             onPress={() => navigation.navigate("ChangePassword")}
             style={styles.changePassword}
@@ -118,42 +111,69 @@ function AccountScreen({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
+  screen: {
+    flex: 1,
+    backgroundColor: "#f2f2f2",
+    alignItems: "stretch"
   },
+
+  container: {
+    backgroundColor: colors.white,
+    paddingHorizontal: 20,
+    height: '100%',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 5,
+  },
+
   changePassword: {
     width: "100%",
     marginVertical: 10,
     height: 60,
     borderRadius: 10,
     flexDirection: "row",
-    backgroundColor: colors.light,
+    backgroundColor: colors.gray200,
     padding: 10,
     alignItems: "center",
   },
+
   changePasswordText: {
     width: "75%",
     fontSize: 20,
     marginLeft: 10,
   },
+
   heading: {
     fontSize: 30,
     fontWeight: "bold",
     color: "#007599",
     marginTop: 25,
     textAlign: "center",
+    paddingBottom: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.oceanblue,
   },
+
   mainText: {
-    padding: 10,
+    paddingTop: 20,
     fontSize: 20,
     textAlign: "left",
+    lineHeight: 35,
   },
+
   bold: {
     fontWeight: "bold",
   },
+
   logoutBtn: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.oceanblue,
   },
+  
   subText: {
     padding: 10,
     fontSize: 15,

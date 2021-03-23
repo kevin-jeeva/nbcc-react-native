@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator();
 const AppNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen //HOMEPAGE ICON
+      <Tab.Screen //Homepage ICON
         name="Homepage"
         component={ArticleNavigator}
         options={{
@@ -22,7 +22,7 @@ const AppNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen //Account ICON
+      <Tab.Screen //Dashboard ICON
         name="Dashboard"
         component={DashboardNavi}
         options={{

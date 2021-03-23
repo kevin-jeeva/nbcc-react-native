@@ -20,6 +20,7 @@ import { cos } from "react-native-reanimated";
 import MostViewed from "../components/MostViewed";
 import cacheStorage from "../cache/cacheStorage";
 import LastViewed from "../components/LastViewed";
+import colors from "../config/colors";
 
 function Dashboard({ navigation, route }) {
   const { user } = useContext(AuthContext);
@@ -92,7 +93,7 @@ function Dashboard({ navigation, route }) {
             animated
             animationType={"decay"}
             progress={item.progressVal}
-            color={"red"}
+            color={colors.urbangreen}
             height={20}
             width={250}
           />
@@ -111,7 +112,7 @@ function Dashboard({ navigation, route }) {
         <>
           <View style={styles.progressContainer}>
             <Text style={styles.titleText}>Progress</Text>
-            <View style={styles.seperator}></View>
+            <View style={styles.separator}></View>
 
             <FlatList
               data={progressValue}
@@ -121,7 +122,7 @@ function Dashboard({ navigation, route }) {
           </View>
           <View style={styles.progressContainer}>
             <Text style={styles.titleText}>Suggestion</Text>
-            <View style={styles.seperator}></View>
+            <View style={styles.separator}></View>
             <Sugesstion
               navigation={navigation}
               route={route}
@@ -130,7 +131,7 @@ function Dashboard({ navigation, route }) {
           </View>
           <View style={styles.progressContainer}>
             <Text style={styles.titleText}>Most Viewed</Text>
-            <View style={styles.seperator}></View>
+            <View style={styles.separator}></View>
             <MostViewed
               navigation={navigation}
               route={route}
@@ -150,12 +151,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f2f2",
   },
   progressContainer: {
-    borderRadius: 15,
+    borderRadius: 5,
     marginVertical: 15,
     marginHorizontal: 10,
     overflow: "hidden",
-    borderColor: "#737373",
+    borderColor: "#ddd",
     borderWidth: 1,
+    backgroundColor: colors.white
   },
   container: {
     width: "100%",
@@ -163,10 +165,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
   },
-  seperator: {
+  separator: {
     width: "100%",
     height: "1%",
-    backgroundColor: "white",
+    backgroundColor: colors.white,
   },
   text: {
     marginRight: 10,
@@ -178,8 +180,8 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     alignSelf: "center",
-    backgroundColor: "#737373",
-    color: "white",
+    backgroundColor: colors.oceanblue,
+    color: colors.white,
     width: "100%",
   },
 });

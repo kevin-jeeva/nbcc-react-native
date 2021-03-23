@@ -51,7 +51,7 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
       <TouchableHighlight
         style={styles.textContainer}
         activeOpacity={1}
-        underlayColor={colors.underLay}
+        underlayColor={colors.gray200}
         onPress={() => {
           AddLastViewed(item.content_id, item.content_title);
           navigation.navigate("ShowContent", { content_id: item.content_id });
@@ -123,16 +123,16 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
 
 const styles = StyleSheet.create({
   arrow: {
-    width: "100%%",
+    width: "100%",
   },
   chevron: {},
   line: {
     width: "100%",
-    backgroundColor: colors.iconLight,
+    backgroundColor: colors.gray200,
     height: 1,
   },
   heading: {
-    color: colors.primary,
+    color: colors.oceanblue,
     fontWeight: "bold",
     fontSize: 20,
     marginTop: 10,
