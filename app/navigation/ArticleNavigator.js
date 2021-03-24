@@ -19,7 +19,7 @@ const ArticleNavigator = () => {
       />
       <Stack.Screen
         name="ShowContent"
-        options={{ headerShown: false }}
+        options={({ route }) => ({ title: route.params.name })}
         component={DisplayContent}
       />
       <Stack.Screen name="RockRes" component={RockUrRes} />
