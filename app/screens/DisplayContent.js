@@ -11,7 +11,7 @@ function DisplayContent({ content_id = 76, route }) {
 
   const regex = /(<([^>]+)>)/gi;
 
-  const GetContent = async (id) => {
+  const GetContent = async (id = 119) => {
     const result = await content.getContent(id);
     if (!result.ok) {
       console.log("No such content");

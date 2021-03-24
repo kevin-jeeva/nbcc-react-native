@@ -4,6 +4,7 @@ import ContentScreen from "../screens/ContentScreen";
 import DisplayContent from "../screens/DisplayContent";
 import Homepage from "../screens/Homepage";
 import ContactUsScreen from "../screens/ContactUsScreen";
+import RockUrRes from "../screens/RockUrRes";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ const ArticleNavigator = () => {
         options={{ headerShown: false }}
         component={DisplayContent}
       />
+      <Stack.Screen name="RockRes" component={RockUrRes} />
       <Stack.Screen name="ContactUs" component={ContactUsScreen} />
     </Stack.Navigator>
   );
