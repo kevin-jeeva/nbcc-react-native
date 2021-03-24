@@ -14,17 +14,6 @@ import progress from "../api/progress";
 import { useContext } from "react";
 import AuthContext from "../AuthContext/context";
 
-const message = [
-  {
-    id: "1",
-    toDo: "Drink water",
-  },
-  {
-    id: "2",
-    toDo: "Jog for ten minutes",
-  },
-];
-
 function RockUrRes(props) {
   const [resolution, setResolution] = useState([]);
   const { user } = useContext(AuthContext);
@@ -86,14 +75,22 @@ function RockUrRes(props) {
 
   return (
     <Screen>
-      <FlatList
-        data={resolution}
-        renderItem={Rock}
-        keyExtractor={(item) => item.res_id.toString()}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
-        }
-      />
+      {resolution.length ? (
+        <FlatList
+          data={resolution}
+          renderItem={Rock}
+          keyExtractor={(item) => item.res_id.toString()}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+          }
+        />
+      ) : (
+        <View style={styles.finishedContainer}>
+          <Text style={styles.finished}>
+            Well Done! you have rocked your resolution 😀
+          </Text>
+        </View>
+      )}
     </Screen>
   );
 }
@@ -113,6 +110,16 @@ const styles = StyleSheet.create({
     width: 60,
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
+  },
+  finished: {
+    fontSize: 20,
+    alignSelf: "center",
+    marginVertical: 50,
+  },
+  finishedContainer: {
+    flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
   },
   seperator: {
