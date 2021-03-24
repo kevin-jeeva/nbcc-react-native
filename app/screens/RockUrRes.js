@@ -1,11 +1,18 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, RefreshControl } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Screen from "../components/screen";
-import { FlatList } from "react-native-gesture-handler";
-import { color } from "react-native-reanimated";
+import {
+  FlatList,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
+import { color, set } from "react-native-reanimated";
 import colors from "../config/colors";
+import { useEffect, useState } from "react/cjs/react.development";
+import progress from "../api/progress";
+import { useContext } from "react";
+import AuthContext from "../AuthContext/context";
 
 const message = [
   {
@@ -19,28 +26,58 @@ const message = [
 ];
 
 function RockUrRes(props) {
-  const RightActions = () => {
+  const [resolution, setResolution] = useState([]);
+  const { user } = useContext(AuthContext);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const getResolution = async (user_id = user[0].staff_id) => {
+    const result = await progress.GetResolution(user_id);
+    if (!result.ok) return setResolution(null);
+    return setResolution(result.data);
+  };
+
+  const handleDelete = async (obj, staff_id = user[0].staff_id) => {
+    const result = await progress.ReadResolution(obj.res_id, staff_id);
+    if (result.ok) return getResolution();
+  };
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    getResolution();
+    setRefreshing(false);
+  };
+
+  useEffect(() => {
+    getResolution();
+  }, []);
+
+  const RightActions = (item) => {
     return (
-      <View style={styles.done}>
-        <MaterialCommunityIcons
-          name={"trash-can-outline"}
-          size={30}
-          color={colors.light}
-        />
-      </View>
+      <TouchableWithoutFeedback
+        style={styles.done}
+        onPress={() => handleDelete(item)}
+      >
+        <View>
+          <MaterialCommunityIcons
+            name={"trash-can-outline"}
+            size={30}
+            color={colors.light}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     );
   };
 
   const Rock = ({ item }) => {
     return (
-      <Swipeable renderRightActions={RightActions}>
+      <Swipeable renderRightActions={() => RightActions(item)}>
         <View style={styles.container}>
           <MaterialCommunityIcons
             name={"format-list-bulleted-square"}
             size={30}
             color={"black"}
           />
-          <Text style={styles.toDoText}>{item.toDo}</Text>
+          <Text style={styles.toDoText}>{item.res_text}</Text>
         </View>
         <View style={styles.seperator}></View>
       </Swipeable>
@@ -50,9 +87,12 @@ function RockUrRes(props) {
   return (
     <Screen>
       <FlatList
-        data={message}
+        data={resolution}
         renderItem={Rock}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.res_id.toString()}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+        }
       />
     </Screen>
   );
@@ -71,6 +111,7 @@ const styles = StyleSheet.create({
   done: {
     backgroundColor: "tomato",
     width: 60,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -80,8 +121,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
   },
   toDoText: {
-    fontSize: 20,
-    width: "50%",
+    fontSize: 15,
+    width: "100%",
     marginHorizontal: 20,
   },
 });
