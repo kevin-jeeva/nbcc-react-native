@@ -423,6 +423,10 @@ shaka.text.TtmlTextParser.parseCue_ = function(
     return null;
   }
 
+  const spaceStyle = cueElement.getAttribute('xml:space') ||
+      (whitespaceTrim ? 'default' : 'preserve');
+  const localWhitespaceTrim = spaceStyle == 'default';
+
   // Get time.
   let start = shaka.text.TtmlTextParser.parseTime_(
       cueElement.getAttribute('begin'), rateInfo);
@@ -466,8 +470,7 @@ shaka.text.TtmlTextParser.parseCue_ = function(
   ) {
     payload = shaka.text.TtmlTextParser.sanitizeTextContent(
         cueElement,
-        whitespaceTrim,
-    );
+        localWhitespaceTrim);
   } else {
     for (const childNode of cueElement.childNodes) {
       const nestedCue = shaka.text.TtmlTextParser.parseCue_(
@@ -478,9 +481,8 @@ shaka.text.TtmlTextParser.parseCue_ = function(
           styles,
           regionElements,
           cueRegions,
-          whitespaceTrim,
-          /* isNested */ true
-      );
+          localWhitespaceTrim,
+          /* isNested */ true);
 
       if (nestedCue) {
         // Set the start time and end time for the nested cues.
@@ -716,7 +718,14 @@ shaka.text.TtmlTextParser.addStyle_ = function(
   }
 
   if (imageElement) {
-    const backgroundImageType = imageElement.getAttribute('imagetype');
+    // According to the spec, we should use imageType (camelCase), but
+    // historically we have checked for imagetype (lowercase).
+    // This was the case since background image support was first introduced
+    // in PR #1859, in April 2019, and first released in v2.5.0.
+    // Now we check for both, although only imageType (camelCase) is to spec.
+    const backgroundImageType =
+        imageElement.getAttribute('imageType') ||
+        imageElement.getAttribute('imagetype');
     const backgroundImageEncoding = imageElement.getAttribute('encoding');
     const backgroundImageData = imageElement.textContent.trim();
     if (backgroundImageType == 'PNG' &&
