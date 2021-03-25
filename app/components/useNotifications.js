@@ -36,7 +36,7 @@ export default useNotifications = () => {
       setExpoPushToken(token)
     );
     InsertPushToken();
-    send();
+    //send();
     notificationListener.current = Notifications.addNotificationReceivedListener(
       (notification) => {
         setNotification(notification);
@@ -45,7 +45,7 @@ export default useNotifications = () => {
 
     responseListener.current = Notifications.addNotificationResponseReceivedListener(
       (response) => {
-        console.log(response);
+        //console.log(response);
       }
     );
 
