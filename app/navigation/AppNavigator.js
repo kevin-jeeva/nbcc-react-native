@@ -1,19 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
 import AccountScreen from "../screens/AccountScreen";
 import Homepage from "../screens/Homepage";
 import ArticleNavigator from "./ArticleNavigator";
 import DashboardNavi from "./DashboardNavi";
 import AccountNavigator from "./AccountNavigator";
+import useNotifications from "../components/useNotifications";
+
 // BOTTOM PAGE TAB
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
+  useNotifications();
+  // useEffect(() => {
+  //   registerForPushNotificaitons();
+  // }, []);
+  // const registerForPushNotificaitons = async () => {
+  //   try{
+  //     const permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+  //     if(!permission.granted) return;
+
+  //     const token = await Notifications.getExpoPushTokenAsync();
+  //     console.log(token);
+  //   }catch(error){
+  //     console.log('error getting a push token');
+  //   }
+
+  // }
   return (
     <Tab.Navigator>
-      <Tab.Screen //Homepage ICON
+      <Tab.Screen //HOMEPAGE ICON
         name="Homepage"
         component={ArticleNavigator}
         options={{
@@ -22,7 +39,7 @@ const AppNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen //Dashboard ICON
+      <Tab.Screen //Account ICON
         name="Dashboard"
         component={DashboardNavi}
         options={{

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
+import { LogBox } from "react-native";
 
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
@@ -15,6 +16,10 @@ import { get } from "react-native/Libraries/Utilities/PixelRatio";
 import ContactUsScreen from "./app/screens/ContactUsScreen.js";
 
 export default function App() {
+  //hide warnings
+  LogBox.ignoreLogs(["Warning:..."]);
+  LogBox.ignoreAllLogs();
+
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
 

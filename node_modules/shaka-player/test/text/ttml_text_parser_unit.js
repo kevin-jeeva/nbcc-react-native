@@ -100,6 +100,32 @@ describe('TtmlTextParser', function() {
         jasmine.any(String));
   });
 
+  it('supports xml:space overriding default at span level', () => {
+    const ttBody = '\n' +
+        '  <body><div>\n' +
+        '    <p begin="01:02.03" end="01:02.05">\n' +
+        '      <span xml:space="preserve"> A    B   C  </span>\n' +
+        '    </p>\n' +
+        '  </div></body>\n';
+
+    // When xml:space="preserve", take them into account.
+    verifyHelper(
+        [
+          {
+            start: 62.03,
+            end: 62.05,
+            payload: '',
+            nestedCues: [{
+              payload: ' A    B   C  ',
+              startTime: 62.03,
+              endTime: 62.05,
+            }],
+          },
+        ],
+        '<tt>' + ttBody + '</tt>',
+        {periodStart: 0, segmentStart: 0, segmentEnd: 0});
+  });
+
   it('rejects invalid ttml', () => {
     const anyString = jasmine.any(String);
     errorHelper(shaka.util.Error.Code.INVALID_XML, '<test></test>', anyString);
@@ -781,7 +807,7 @@ describe('TtmlTextParser', function() {
         'xmlns:ttm="http://www.w3.org/ns/ttml#metadata" ' +
         'xmlns:smpte="http://www.smpte-ra.org/schemas/2052-1/2010/smpte-tt">' +
         '<metadata>' +
-        '<smpte:image imagetype="PNG" encoding="Base64" xml:id="img_0">' +
+        '<smpte:image imageType="PNG" encoding="Base64" xml:id="img_0">' +
         'base64EncodedImage</smpte:image>' +
         '</metadata>' +
         '<body>' +

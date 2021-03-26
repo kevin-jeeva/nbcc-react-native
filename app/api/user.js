@@ -24,6 +24,9 @@ const changePassword = (email, password) =>
 const changePhone = (id, phone) =>
   client.post(endpoint + "/changePhone/" + id + "/" + phone);
 
+const insertPushToken = (id, token) =>
+  client.post(endpoint + "/pushToken/" + id + "/" + token);
+
 export default {
   getAllUsers,
   getUserbyEmail,
@@ -32,4 +35,5 @@ export default {
   getPhoneById,
   changePassword,
   changePhone,
+  insertPushToken,
 };

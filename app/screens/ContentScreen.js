@@ -54,7 +54,10 @@ function ContentScreen({ resource = "Articles", navigation, route }) {
         underlayColor={colors.gray200}
         onPress={() => {
           AddLastViewed(item.content_id, item.content_title);
-          navigation.navigate("ShowContent", { content_id: item.content_id });
+          navigation.navigate("ShowContent", {
+            name: "",
+            content_id: item.content_id,
+          });
         }}
       >
         <>
