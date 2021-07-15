@@ -7,9 +7,8 @@ import {
   FlatList,
   TouchableWithoutFeedback,
 } from "react-native-gesture-handler";
-import { color, set } from "react-native-reanimated";
 import colors from "../config/colors";
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import progress from "../api/progress";
 import { useContext } from "react";
 import AuthContext from "../AuthContext/context";

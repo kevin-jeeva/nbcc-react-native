@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "nbcc-react-native",
-    "slug": "nbcc-react-native",
+    "name": "NBCC Staff Wellness",
+    "slug": "nbcc-staff-wellness",
+    "privacy": "public",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +29,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "This app helps NBCC staff helps to maintain their wellness by delivering them articles, support services, and the most recent events to be held in NBCC."
   }
 }
